@@ -19,11 +19,9 @@ const handleCrawlAndProcessRequest = async (
   const { url } = req.query;
 
   if (!validateUrl(url)) {
-    res
-      .status(400)
-      .json({
-        error: 'URL parameter is required and must be a non-empty string',
-      });
+    res.status(400).json({
+      error: 'URL parameter is required and must be a non-empty string',
+    });
     return;
   }
 

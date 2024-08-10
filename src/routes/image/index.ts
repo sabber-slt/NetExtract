@@ -44,11 +44,9 @@ const handleImageSearch = async (
   const { q } = req.query;
 
   if (!validateSearchQuery(q)) {
-    res
-      .status(400)
-      .json({
-        error: 'Search query is required and must be a non-empty string',
-      });
+    res.status(400).json({
+      error: 'Search query is required and must be a non-empty string',
+    });
     return;
   }
 

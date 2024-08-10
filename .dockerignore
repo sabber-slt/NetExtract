@@ -49,4 +49,3 @@ backend.dockerfile
 
 # Ignore assets and cookies (if not required in the container)
 assets/
-cookie/
