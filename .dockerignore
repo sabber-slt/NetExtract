@@ -1,0 +1,52 @@
+# Ignore node_modules
+node_modules
+npm-debug.log
+yarn-error.log
+yarn.lock
+
+# Ignore local development environment files
+.env
+.DS_Store
+
+# Ignore build output directories
+dist
+build
+
+# Ignore logs
+*.log
+
+# Ignore test and coverage outputs
+coverage
+*.test.js
+*.spec.js
+
+# Ignore documentation
+docs
+
+# Ignore Git files
+.git
+.gitignore
+
+# Ignore IDE/editor-specific files
+.vscode
+.idea
+*.sublime-project
+*.sublime-workspace
+
+# Ignore Docker-specific files
+Dockerfile
+docker-compose.yml
+backend.dockerfile
+
+# Ignore miscellaneous files
+*.swp
+*.temp
+*.tmp
+
+# Ignore Prettier configuration files
+.prettierrc
+.prettierignore
+
+# Ignore assets and cookies (if not required in the container)
+assets/
+cookie/

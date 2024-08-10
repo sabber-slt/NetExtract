@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '8090:8090'
+    env_file:
+      - .env
+    volumes:
+      - ./logs:/usr/src/app/logs
