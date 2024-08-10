@@ -22,7 +22,7 @@ RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key
 
 WORKDIR /usr/src/app
 
-COPY package.json yarn.lock ./
+COPY package*.json ./
 
 RUN yarn install --frozen-lockfile
 
