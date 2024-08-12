@@ -5,6 +5,7 @@ import StealthPlugin from 'puppeteer-extra-plugin-stealth';
 import { JSDOM } from 'jsdom';
 import { Readability } from '@mozilla/readability';
 import TurndownService from 'turndown';
+import * as turndownPluginGfm from 'joplin-turndown-plugin-gfm';
 import fs from 'fs';
 import { CleanedContent, ScrapeOptions } from '../interfaces/crawlerTypes';
 
@@ -151,19 +152,53 @@ function processContent(content: string): CleanedContent {
   }
 
   const turndownService = new TurndownService();
-  const markdown = turndownService.turndown(article.content);
-  const structuredMarkdown = `
-# ${article.title}
-${article.excerpt}
----
-${markdown}
-  `.trim();
+  turndownService.addRule('inlineLink', {
+    filter: function (node, options) {
+      return (
+        options.linkStyle === 'inlined' &&
+        node.nodeName === 'A' &&
+        node.getAttribute('href')
+      );
+    },
+    replacement: function (content, node) {
+      var href = node.getAttribute('href').trim();
+      var title = node.title ? ' "' + node.title + '"' : '';
+      return '[' + content.trim() + '](' + href + title + ')\n';
+    },
+  });
+
+  var gfm = turndownPluginGfm.gfm;
+  turndownService.use(gfm);
+  let markdown = turndownService.turndown(article.content);
+  let insideLinkContent = false;
+  let newMarkdownContent = '';
+  let linkOpenCount = 0;
+  for (let i = 0; i < markdown.length; i++) {
+    const char = markdown[i];
+
+    if (char == '[') {
+      linkOpenCount++;
+    } else if (char == ']') {
+      linkOpenCount = Math.max(0, linkOpenCount - 1);
+    }
+    insideLinkContent = linkOpenCount > 0;
+
+    if (insideLinkContent && char == '\n') {
+      newMarkdownContent += '\\' + '\n';
+    } else {
+      newMarkdownContent += char;
+    }
+  }
+  markdown = newMarkdownContent;
+
+  // Remove [Skip to Content](#page) and [Skip to content](#skip)
+  markdown = markdown.replace(/\[Skip to Content\]\(#[^\)]*\)/gi, '');
 
   return {
     title: article.title,
     content: article.content,
     excerpt: article.excerpt,
-    markdown: structuredMarkdown,
+    markdown: markdown,
   };
 }
 
