@@ -35,9 +35,9 @@ http://{your_address}/api/image?q={query}
 
 ## 🗂️ Getting started
 
-1. Generate an API Key: Get your API key from **[Groq](https://console.groq.com/keys)**
+1. **Generate an API Key**: Get your API key from **[Groq](https://console.groq.com/keys)**
 
-2. **Set Up Twitter Cookies**:
+2. **Set Up Twitter Cookies(Optional)**:
 
    - Download **[cookie-editor](https://cookie-editor.com/#download)** based on your browser.
    - Log into your Twitter account and download the cookies using this extension.
