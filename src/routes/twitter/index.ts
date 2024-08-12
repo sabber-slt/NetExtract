@@ -1,6 +1,6 @@
 import { Router, Request, Response } from 'express';
 import { crawl } from '../../services/crawler';
-import { twitterAgent } from '../../agents/twitter';
+import { md_refactor } from '../../agents/md-refactor';
 
 const router = Router();
 
@@ -27,7 +27,7 @@ const handleCrawlAndProcessRequest = async (
 
   try {
     const markdown = await crawl(url);
-    const processedContent = await twitterAgent(JSON.stringify(markdown));
+    const processedContent = await md_refactor(JSON.stringify(markdown));
 
     res.type('text/markdown').status(200).send(processedContent);
   } catch (error) {

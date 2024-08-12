@@ -14,14 +14,12 @@ export interface ScrapeOptions {
 }
 
 export interface CleanedContent {
-  title: string;
   content: string;
   excerpt: string;
   markdown: string;
 }
 
 export interface ScrapedData {
-  title: string;
   content: string;
   excerpt: string;
   markdown: string;

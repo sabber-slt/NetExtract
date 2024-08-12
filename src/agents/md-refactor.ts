@@ -28,7 +28,7 @@ Today's date is ${new Date().toISOString()}.
  * @returns {Promise<string>} The processed markdown content
  * @throws {Error} If the API call fails
  */
-export const twitterAgent = async (content: string): Promise<string> => {
+export const md_refactor = async (content: string): Promise<string> => {
   try {
     const chatCompletion = await groq.chat.completions.create({
       messages: [

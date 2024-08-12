@@ -26,6 +26,7 @@ const handleCrawlRequest = async (
 
   try {
     const markdown = await crawl(url);
+
     res.type('text/markdown').status(200).send(markdown);
   } catch (error) {
     console.error(`Failed to crawl URL: ${url}. Error:`, error);

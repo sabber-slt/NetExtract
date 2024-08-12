@@ -4,15 +4,15 @@ import imageRouter from './image';
 import xRouter from './twitter';
 
 const ROUTES = {
-  WEB: '/web',
+  WEB: '/',
   IMAGE: '/image',
-  X: '/x',
+  // X: '/x',
 } as const;
 
 const mainRouter: Router = Router();
 
 mainRouter.use(ROUTES.WEB, webRouter);
 mainRouter.use(ROUTES.IMAGE, imageRouter);
-mainRouter.use(ROUTES.X, xRouter);
+// mainRouter.use(ROUTES.X, xRouter);
 
 export default mainRouter;
