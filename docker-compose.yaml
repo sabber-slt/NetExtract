@@ -6,7 +6,7 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - '8090:8090'
+      - '3000:3000'
     env_file:
       - .env
     volumes:

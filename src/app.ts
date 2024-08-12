@@ -1,12 +1,7 @@
 import express, { Express } from 'express';
 import cors from 'cors';
-import dotenv from 'dotenv';
 import logger from './utils/logger';
 import routes from './routes';
-
-const loadConfig = (): void => {
-  dotenv.config();
-};
 
 const createServer = (): Express => {
   const app = express();
@@ -32,8 +27,7 @@ const startServer = (app: Express, port: number): void => {
 };
 
 const main = (): void => {
-  loadConfig();
-  const port = Number(process.env.PORT) || 3000;
+  const port = 3000;
   const app = createServer();
   setupMiddleware(app);
   setupRoutes(app);
