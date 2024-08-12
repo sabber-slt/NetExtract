@@ -27,7 +27,7 @@ const startServer = (app: Express, port: number): void => {
 };
 
 const main = (): void => {
-  const port = 3000;
+  const port = 3005;
   const app = createServer();
   setupMiddleware(app);
   setupRoutes(app);
