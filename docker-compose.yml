@@ -1,5 +1,4 @@
 version: '3.8'
-
 services:
   app:
     build:
@@ -11,3 +10,18 @@ services:
       - .env
     volumes:
       - ./logs:/usr/src/app/logs
+    depends_on:
+      - clamav
+
+  clamav:
+    image: clamav/clamav:latest
+    volumes:
+      - clamav_data:/var/lib/clamav
+    ports:
+      - '3310:3310'
+    environment:
+      - CLAMAV_NO_FRESHCLAM=false
+      - FRESHCLAM_CHECKS=24
+
+volumes:
+  clamav_data:
