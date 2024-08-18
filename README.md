@@ -28,11 +28,21 @@ git clone https://github.com/sabber-slt/NetExtract
 cd NetExtract
 ```
 
-Then run the application with Docker:
-
+Build the application for multiple platforms using Docker Buildx:
 ```bash
-docker compose up -d
+docker buildx build --platform linux/amd64,linux/arm64 -t netextract .
 ```
+
+Then run the application with Docker:
+```bash
+docker run -d -p 3005:3005 netextract
+```
+
+If you're using an Apple Silicon Mac, you can specify the platform explicitly:
+```bash
+docker run --platform linux/amd64 -d -p 3005:3005 netextract
+```
+
 
 ## ⚡️ Acknowledgments
 
